@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+
+#cadastro {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.formcadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+input {
+    margin-bottom: 15%;
+    margin-top: 1%;
+    padding: 5%;
+    margin-left:10%;
+    margin-right: 10%;
+    background: #EDEDED;
+    border-radius: 10px;
+    width: 90%;
+    border: none;
+    border-color: grey;
+ }
+ 
+ button {
+    margin-bottom: 15%;
+    margin-top: 1%;
+    margin-left: 30%;
+    margin-right: 10%;
+    color: black;
+    background-color: #F4A261;
+    width: 60%;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+ }
+ 
+ ::placeholder { 
+     color: black;
+ }

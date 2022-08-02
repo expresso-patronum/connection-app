@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head') %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/cadastroEmpresaTime.css">
+    <title>Connection</title>
+</head>
+<body>
+    <br><br>
+    <h4 id="cadastro">Cadastre seu time</h4>
+    <div class="formcadastro">
+    <form action="/times/cadastrar" method="post">
+        <label for="nome"></label>
+        <input type="text" name="nome" id="nome" placeholder="Nome" required>
+
+        <label for="empresa"></label>
+        <select name="empresas" id="empresas">
+            <option value=""></option>
+        </select>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+
+</body>
+</html>

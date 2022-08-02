@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head') %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/cadastroEmpresaTime.css">
+    <title>Connection</title>
+</head>
+<body>
+    <br><br>
+    <h4 id="cadastro">Cadastre sua empresa</h4>
+    <div class="formcadastro">
+    <form action="/empresas/cadastrar" method="post">
+        <label for="nome"></label>
+        <input type="text" name="nome" id="nome" placeholder="Nome" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head') %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login-cadastroUsuario.css">
+    <title>Connection</title>
+</head>
+<body>
+    <div class="logo">
+        <img src="/assets/connection-logo.png" class="logoImg">
+    </div>
+    <br><br>
+    <div class="formcadastro">
+        <h4 id="cadastro">Cadastro</h4>
+    <form action="/usuarios/cadastrar" method="post" enctype="multipart/form-data">
+        <label for="nome"></label>
+        <input type="text" name="nome" id="nome" placeholder="Nome" required>
+
+        <label for="email"></label>
+        <input type="email" name="email" id="email" placeholder="E-mail" required>
+
+        <label for="senha"></label>
+        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+
+        <label for="imagem">Escolha uma foto de perfil</label><br>
+        <input type="file" name="imagem" id="imagem">
+        <button type="submit">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>
