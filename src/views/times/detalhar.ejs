@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/header') %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/detalhar.css">
+    <title>Connection</title>
+</head>
+<body>
+    <br><br>
+    <div id="container">
+    <h4 id="time"></h4>
+    <br>
+    <table id="membros">
+        <% informacoes.forEach(informacao => { %>
+            <tr>
+                <td> <%= informacao.membros %></td>
+                <td>Adicionado em </td>
+                <td class="dataConv"><%= informacao.created_at %></td>
+            </tr>
+            <% }) %>
+            <p>Administrador: <%= Object.values(adm) %></p>
+        </table>
+    <% if(usuario == Object.values(emailAdm)) { %>
+    <form action="/times/<%=time.id%>/convite" method="get">
+        <button type="submit">Convidar participantes</button>
+    </form>
+    <% } %>
+</div>
+<%- include('../includes/footer') %>
+</body>
+<script>
+    const option = {
+    year: 'numeric',
+    month: 'short',
+    weekday: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+}
+
+
+window.onload = function() {
+  for(let i=0; i< document.getElementsByClassName("dataConv").length; i++){
+    let dado=  new Date(document.getElementsByClassName("dataConv")[i].innerHTML)
+    const dataConv = dado.toLocaleDateString('pt-br', option)  
+    document.getElementsByClassName("dataConv")[i].innerHTML = dataConv;
+}
+}
+
+</script>
+</html>

@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  .container {
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .calendar {
+    width: 45rem;
+    height: 52rem;
+    background-color: #222227;
+    box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
+  }
+  
+  .month {
+    width: 100%;
+    height: 12rem;
+    background-color: #F4A261;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    text-align: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  }
+  
+  .month i {
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+  
+  .month h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .month p {
+    font-size: 1.6rem;
+  }
+  
+  .weekdays {
+    width: 100%;
+    height: 5rem;
+    padding: 0 0.4rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .weekdays div {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    width: calc(44.2rem / 7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  }
+  
+  .days {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.2rem;
+  }
+  
+  .days div {
+    font-size: 1.4rem;
+    margin: 0.3rem;
+    width: calc(40.2rem / 7);
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s;
+  }
+  
+  .days div:hover:not(.today) {
+    background-color: #262626;
+    border: 0.2rem solid #777;
+    cursor: pointer;
+  }
+  
+  .prev-date,
+  .next-date {
+    opacity: 0.5;
+  }
+  
+  .today {
+    background-color: #F4A261;
+  }
+
+  main {
+    padding: 15px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+  }
+  label{
+      color: black;
+  }
+  button {
+    display: inline-block;
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    border: none;
+    height: 36px;
+    line-height: 1;
+    padding: 0 22px;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    user-select: none;
+    text-decoration: none;
+  }
+  button small {
+    margin-left: 4px;
+    opacity: 0.9;
+  }
+  button small i {
+    margin-right: 1px;
+  }
+  button.warn,
+  button[type='submit'] {
+    background-color: var(--warn-bg);
+  }
+
+  button.warn{
+    visibility: hidden;
+  }
+  dialog {
+    border: none;
+    border-radius: 4px;
+    color: var(--modal-color);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    background-color: var(--bg);
+  }
+  dialog::backdrop {
+    background: linear-gradient(
+      45deg,
+      rgb(18, 18, 20, 0.4),
+      rgb(17, 17, 20, 0.8)
+    );
+  }
+  dialog[open] {
+    animation: scale 0.3s ease normal;
+  }
+  dialog[open]::backdrop {
+    animation: backdrop 0.3s ease normal;
+  }
+  dialog.hide {
+    animation-direction: reverse;
+  }
+  dialog menu {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    vertical-align: middle;
+    justify-content: center;
+    gap: 12px;
+  }
+  dialog menu small {
+    margin-right: auto;
+  }
+  dialog{
+    margin: auto;
+  }
+  dialog i.cancel {
+    cursor: pointer;
+    padding: 0 5px;
+    float: right;
+  }
+  output {
+    color: var(--color);
+  }
+  @keyframes scale {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes backdrop {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+ 
+
+  
+.nome {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 18px;
+    overflow: hidden;
+  }
+
+  .horaedia {
+    font-size: 9px;
+    font-weight: bold;
+    line-height: 20px;
+    overflow: hidden;
+    text-align: right;
+  }
+
+  .mensagem {
+      text-align: right;
+      font-size: 14.5px;
+  }
+  
+  .membros {
+    width: 20%;
+    height: 95%;
+    float: left;
+  }
+
+  .membro {
+    line-height: 20px;
+    padding: 18px;
+    overflow: hidden;
+  }
+
+  
+.cargo {
+    background-color: rgba(211, 165, 136, 0.4);
+    padding: 5px;
+}
+
+.info {
+  height: 25px;
+  width: 25px;
+  background-color: #c4c4c4;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+}
+/*
+.novoGrupo {
+    display: block;
+    border: none;
+    padding: 15px;
+    background: rgba(255, 191, 70, 0.7);
+    border-radius: 20px;
+}*/
+
+#grupos {
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+:root {
+    --bg: rgba(185, 185, 183, 0.938);
+    --color: #ffffff;
+    --button-bg: rgb(50, 52, 61);
+    --button-color: #000;
+    --warn-bg: rgba(255, 191, 70, 0.7);
+    --modal-color: rgb(155, 155, 160);
+    font-family: 'Inter',  sans-serif;
+  }
+  /*menu,
+  nav {
+    margin-top: -1%; 
+    margin-left: 3.5%;
+    margin-right: 2%;
+  }*/
+
+  .cancel{
+    background-color: black;
+    color: white;
+    width: 30%;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+  }
+
+    #eventosAgendados{
+      background: #F4A261;
+    font-weight: 300;
+    color: white;
+      margin-left: 20px;
+    }
+

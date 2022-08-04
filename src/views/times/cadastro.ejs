@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../includes/head') %>
+    <%- include('../includes/header') %>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/cadastroEmpresaTime.css">
+    <link rel="stylesheet" href="/css/cadastroEmpresa-Time.css">
     <title>Connection</title>
 </head>
 <body>
@@ -14,16 +14,20 @@
     <div class="formcadastro">
     <form action="/times/cadastrar" method="post">
         <label for="nome"></label>
-        <input type="text" name="nome" id="nome" placeholder="Nome" required>
-
+        <input type="text" name="nome" id="nome" placeholder="Nome" required><br>
         <label for="empresa"></label>
+       
         <select name="empresas" id="empresas">
-            <option value=""></option>
+            <option value="">Selecione sua empresa</option>
+            <% empresas.forEach(empresa => { %>
+            <option value="<%= empresa.id %>"><%= empresa.nome %></option>
+            <% }) %>
         </select>
-
+        <label for="descricao"></label>
+        <textarea name="descricao" id="descricao" cols="15" rows="1" placeHolder="Descrição"></textarea>
         <button type="submit">Cadastrar</button>
     </form>
 </div>
-
+<%- include('../includes/footer') %>
 </body>
 </html>

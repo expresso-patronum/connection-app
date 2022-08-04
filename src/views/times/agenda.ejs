@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda</title>
+    <link rel="stylesheet" href="/css/agenda.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="calendar">
+        <div class="month">
+          <i class="fas fa-angle-left prev"></i>
+          <div class="date">
+            <h1></h1>
+            <p></p>
+          </div>
+          <i class="fas fa-angle-right next"></i>
+        </div>
+        <div class="weekdays">
+          <div>Dom</div>
+          <div>Seg</div>
+          <div>Ter</div>
+          <div>Qua</div>
+          <div>Qui</div>
+          <div>Sex</div>
+          <div>Sáb</div>
+        </div>
+        <div class="days"></div>
+      </div>
+      <div id="eventosAgendados" >
+       
+        <% if(eventos.length > 0) { %>
+        <% eventos.forEach(evento => { %>
+              
+              Organizado por <p><%= evento.usuario %> 
+             
+                <p class="dataConv"><%= evento.datahora%></p>
+            
+   
+      <% }) %>
+      <% } else { %>
+        <p>Nenhum evento marcado.</p>
+        <% } %>
+                    
+        <form action="/times/<%=time.id%>/detalhar" method="get">
+    
+          <button type="submit">Ver participantes</button>
+   
+  </form>
+      </div>
+  
+    </div>
+
+<main role="main">
+    <button id="invoke" class="warn" >Criar novo grupo</button>
+    <dialog>
+      <form action="/times/<%=time.id%>/agenda/reunioes/criarEvento" method="post">
+        <label for="data" >Data:</label>
+        <input type="text" name="data" id="data" readonly>  <br>
+        <label for="hora" >Hora:</label>
+        <input id="hora" type="time" name="hora" required min="08:00" max="16:00">  <br>
+        <label for="adm" >Administrador:</label>
+        <input type="text" name="adm" value="<%= usuario.email%>"readonly>  <br>
+    
+      
+        <menu>
+            <input class="cancel" readonly placeholder="Cancelar"></input>
+          <button type="submit">Criar</button>
+        </menu>
+      </form>
+    </dialog>
+    <output aria-live="polite"></output>
+  </main>
+
+</body> 
+
+<script>
+
+const option = {
+    year: 'numeric',
+    month: 'short',
+    weekday: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+}
+
+const option2 = {
+    year: 'numeric',
+    month: 'long',
+    weekday: 'long',
+    day: 'numeric'
+}
+
+const dataConv = new Date().toLocaleDateString('pt-br', option);
+
+window.onload = function() {
+  let dataHoraParaConverter= document.getElementsByClassName("dataConv").innerHTML
+  const dataConv = new Date(dataHoraParaConverter).toLocaleDateString('pt-br', option);
+
+  document.getElementsByClassName("dataConv").innerHTML = dataConv
+}
+
+const date = new Date();
+
+const renderCalendar = () => {
+  date.setDate(1);
+
+  function selecionado(e) {
+    let dateM =  (date.getMonth()+1);
+    const dateY =  date.getFullYear().toString();
+   
+    if(dateM<10){
+dateM= '0' + dateM
+    }
+let inputDia= document.getElementById('data');
+  let dateD=  e.innerHTML
+if(dateD<10){
+  dateD= '0' + dateD
+}
+  let inputData= document.getElementById('data')
+  //let dataFinal =  new Date(parseInt(dateM), parseInt(dateY), parseInt(dateD))
+  inputData.setAttribute('value', dateD+ '/'+ dateM + '/' + dateY )
+  const dataConvertida = new Date(dateY, dateM-1, dateD).toLocaleDateString('pt-br', option);
+
+
+ 
+  let diaDaSemana = dataConvertida.slice(0, 3)
+ 
+  if(diaDaSemana== 'sáb' || diaDaSemana=='dom'){
+    alert('Você não pode criar eventos no sábado e no domingo')
+  } else{
+    let buttonWarn= document.getElementsByClassName('warn');
+    buttonWarn[0].click();
+  }
+
+ }
+  const monthDays = document.querySelector(".days");
+  monthDays.addEventListener('click', (e)=>selecionado(e.target))
+  const lastDay = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
+
+  const prevLastDay = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    0
+  ).getDate();
+
+  const firstDayIndex = date.getDay();
+
+  const lastDayIndex = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDay();
+
+  const nextDays = 7 - lastDayIndex - 1;
+
+  const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
+
+  document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+
+  document.querySelector(".date p").innerHTML = new Date().toLocaleDateString('pt-br', option2);
+
+  let days = "";
+
+  for (let x = firstDayIndex; x > 0; x--) {
+    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+  }
+
+  for (let i = 1; i <= lastDay; i++) {
+    if (
+      i === new Date().getDate() &&
+      date.getMonth() === new Date().getMonth()
+    ) {
+      days += `<div class="today">${i}</div>`;
+    } else {
+      days += `<div value='${i}'>${i}</div>`;
+    }
+  }
+
+  for (let j = 1; j <= nextDays; j++) {
+    days += `<div class="next-date">${j}</div>`;
+    monthDays.innerHTML = days;
+  }
+};
+
+document.querySelector(".prev").addEventListener("click", () => {
+  date.setMonth(date.getMonth() - 1);
+  renderCalendar();
+});
+
+document.querySelector(".next").addEventListener("click", () => {
+  date.setMonth(date.getMonth() + 1);
+  renderCalendar();
+});
+
+renderCalendar();
+
+const dialog = document.querySelector('dialog'),
+        invoke = document.getElementById('invoke'),
+        output = document.querySelector('output'),
+        cancel = dialog.querySelector('.cancel');
+      
+      if (typeof dialog.showModal !== 'function') {
+        output.value = `Modal dialog not supported`;
+      }
+      
+      invoke.addEventListener('click', () => {
+        dialog.returnValue = false;
+        dialog.showModal();
+      });
+      
+      dialog.addEventListener('close', () => {
+        dialog.returnValue = dialog.returnValue.toLowerCase() === 'true';
+        output.value = dialog.returnValue;
+      });
+      
+      cancel.addEventListener('click', () => {
+        dialog.close(false);
+      });
+      
+      dialog.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+      
+        const inDialog =
+          rect.top <= e.clientY &&
+          e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX &&
+          e.clientX <= rect.left + rect.width;
+      
+        !inDialog && dialog.close();
+      });
+
+    </script>
+    <%- include('../includes/footer') %>
+  </body>
+</html>

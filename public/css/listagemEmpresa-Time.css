@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+p {
+    font-weight: 600px;
+}
+
+#container {
+  margin-left: 10%;
+}
+
+button {
+  border: none;
+  width: 105px;
+  padding: 15px;
+  color: black;
+  background-color: #f4a261;
+  border-radius: 10px;
+  align-self: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#seustimes {
+    font-size: 1.5em;
+}

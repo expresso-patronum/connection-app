@@ -1,8 +1,6 @@
 const express = require('express');
 const app  = express();
 
-const setup = require('./models/orm-setup');
-
 const session = require('express-session');
 app.use(session({
     secret: 'chave secreta de criptografia',
@@ -17,7 +15,7 @@ app.use(express.urlencoded({
 }));
 
 app.get("/", (req, res) => {
-    return res.render('usuario/login')
+    return res.render('usuario/cadastro', { usuario: req.session.usuario })
   });
   
 
@@ -35,10 +33,12 @@ app.use('/times', timesRoutes);
 const empresasRoutes = require('./routes/empresas-routes');
 app.use('/empresas', empresasRoutes);
 
+const dbcon = require('./config/db-connection');
+
 app.use('*', (req, res) => {
     return res.status(404).send(`
-        <h1>Sorry, not found!!!</h1>
-        <a href="/">VOLTAR</a>
+        <h1>Este endereço não existe.</h1>
+        <a href="/">Voltar</a>
     `);
 })
 app.listen(3000, () => {

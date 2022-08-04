@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/header') %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/notificacoes.css">
+    <title>Connection</title>
+</head>
+<body>
+    <br><br>
+    <h4 id="notificacao">Suas notificações</h4>
+    <br>
+    <% if(notificacoes.length > 0) {%>
+
+        <% notificacoes.forEach(notificacao => { %>
+        
+                <p> Você foi convidado a entrar no time <%= notificacao.time %> em&nbsp; 
+                </p>
+              <p> <%= new Date(notificacao.created_at).toLocaleDateString(); %> 
+              </p>
+         
+    <div id="forms">        
+            <form action="/usuarios/notificacoes/aceitar" method="post">
+              <input type="hidden" name="id"value="<%= notificacao.id%>">
+              <button type="submit">Aceitar</button>
+            </form>
+            <form action="/usuarios/notificacoes/negar" method="post">
+                <input type="hidden" name="id" value="<%= notificacao.id%>">
+                <button type="submit">Negar</button>
+              </form>
+    <div>
+              <% }) %>
+            </table>
+              <% } else {%>
+                <p>Você não possui novas notificações.</p>
+            <% } %>
+    
+
+<%- include('../includes/footer') %>
+</body>
+</html>

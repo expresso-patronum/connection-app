@@ -1,0 +1,49 @@
+<header>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <title>Connection</title>
+    </head>
+<nav>
+    <div class="images">
+        <% if (usuario) { %>
+
+            <ul>
+                <li>
+                    <a href="/usuarios/logout">Logout</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                       <a href="/empresas/opcoes">Minhas empresas</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/times/opcoes">Meus times</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/usuarios/notificacoes"><img src="/assets/notificacao.png" id="notificacao"></a>
+                </li>
+            </ul>
+            
+            <%} else {%>
+            <ul>
+                <li>
+                    <a href="/usuarios/login">Login</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/">Cadastro</a>
+                </li>
+            </ul>
+            <% } %> 
+    </div>
+</nav>
+</header>

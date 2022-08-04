@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/header') %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/listagemEmpresa-Time.css">
+    <title>Connection</title>
+</head>
+<body>
+    <br><br>
+    <div id="container">
+    <h1 id="cadastro">Suas empresas</h1>
+    <br>
+            <h3>Todas as empresas</h3>
+     
+            <% empresasAll.forEach(empresaAll => { %>
+            
+                <form action="/empresas/<%=empresaAll.id%>/empresaTime" method="get">
+                    <p><%= empresaAll.nome %> </p>
+                    <button type="submit">Ver times</button>
+
+            </form>
+  
+            <% }) %>
+
+                <h3>Empresas que você está</h3>
+                    <% empresasUsuario.forEach(empresaUsuario => { %>
+                        <%= empresaUsuario.nome %></p>
+                        <% }) %>       
+          
+</div>
+</body>
+</html>
