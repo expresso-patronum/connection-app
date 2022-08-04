@@ -15,7 +15,7 @@ app.use(express.urlencoded({
 }));
 
 app.get("/", (req, res) => {
-    return res.render('usuario/cadastro', { usuario: req.session.usuario })
+    return res.render('usuarios/cadastro', { usuario: req.session.usuario })
   });
   
 
