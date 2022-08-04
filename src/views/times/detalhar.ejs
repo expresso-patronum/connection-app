@@ -16,7 +16,8 @@
     <table id="membros">
         <% informacoes.forEach(informacao => { %>
             <tr>
-                <td> <%= informacao.membros %></td>
+                <td><img src="/images/<%= informacao.imagem %>" alt="" style="width: 45px;">&nbsp;&nbsp;</td>
+                <td> <%= informacao.membros %>&nbsp;&nbsp;</td>
                 <td>Adicionado em </td>
                 <td class="dataConv"><%= informacao.created_at %></td>
             </tr>
